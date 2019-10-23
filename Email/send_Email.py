@@ -20,9 +20,9 @@ def send_Mail():
     print(login)
     try:
         msg=MIMEMultipart()
-        text=MIMEText(mail_body,'html','utf-8')
+        text=MIMEText( 1,'html','utf-8')
         msg.attach(text)
-        msg_file=MIMEText(mail_body,'html','utf-8')
+        msg_file=MIMEText(2,'html','utf-8')
         current_time=time.strftime('%y-%m-%d')
         msg_file['content-Type']='application/octet-stream'
         msg_file['Content-Disposition']='attachment;filename="%s测试报告 .html'%current_time
