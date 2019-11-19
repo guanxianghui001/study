@@ -3,18 +3,18 @@ import pymysql
 import configparser
 class DataBase():
     def __init__(self):
-        self.conf = configparser.ConfigParser()
-        self.conf.read("../conf/config.ini")
-        self.host = self.conf.get("DataBase", "host")
-        self.port = int(self.conf.get("DataBase", "port"))
-        self.user = self.conf.get("DataBase", "user")
-        self.password = self.conf.get("DataBase", "password")
-        self.move=self.conf.get("DataBase","move")
-        self.clean = self.conf.get("DataBase", "clean")
-        self.broadband = self.conf.get("DataBase", "broadband")
-    def connect_base(self,service):
+        conf = configparser.ConfigParser()
+        conf.read("../conf/config.ini")
+        self.host = conf.get("DataBase", "host")
+        self.port = int(conf.get("DataBase", "port"))
+        self.user = conf.get("DataBase", "user")
+        self.password = conf.get("DataBase", "password")
+        self.move=conf.get("DataBase","move")
+        self.clean = conf.get("DataBase", "clean")
+        self.broadband = conf.get("DataBase", "broadband")
+    def connect_base(self,db):
 
-        print(self.host,self.port,self.user,self.password,service)
+        print(self.host,self.port,self.user,self.password,db)
         # if service == 1:
         #     print("连接搬家数据库")
         # elif service == 2:
@@ -27,13 +27,15 @@ class DataBase():
         #     print("输入参数值错误！1 搬家 2 保洁 3 宽带")
         try:
             print(22222)
-            db = pymysql.connect(host=self.host, user=self.user, password=self.password, db=service)
+
+            db = pymysql.connect(host=self.host, port=self.port,user=self.user, passwd=self.password, database=db)
             cursor = db.cursor()
+
 
         except Exception as e:
             print(e)
         else:
             print(11111)
-            con=pymysql.connect(host='m10038.mars.test.mysql.ljnode.com',user='root',password='b0C123a6fd',db='ke_move',charset='utf8')
+            con=pymysql.connect(host='m10038.mars.test.mysql.ljnode.com',port=self.port,user='root',password='b0C123a6fd',database='ke_move',charset='utf8')
 if __name__=="__main__":
-    DataBase().connect_base(service=1)
+    DataBase().connect_base(db='ke_move')
