@@ -13,7 +13,7 @@ phoneRegex = re.compile(r'''(
 ([0-9]{9})
 )''',re.VERBOSE)
 EmailRegex = re.compile(r'''(
-[a-zA-Z0-9._%+-]+ #用户名
+[a-zA-Z0-9._%+-]+ #用户
 @        
 [a-zA-Z0-9]+            #
 (\.[a-zA-z]{2,4})
